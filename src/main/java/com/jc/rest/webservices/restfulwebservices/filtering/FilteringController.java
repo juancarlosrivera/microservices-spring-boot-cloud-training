@@ -1,10 +1,8 @@
-package com.jc.rest.webservices.restfulwebservices.controller;
+package com.jc.rest.webservices.restfulwebservices.filtering;
 
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.jc.rest.webservices.restfulwebservices.data.ExampleFilteringBeanDynamically;
-import com.jc.rest.webservices.restfulwebservices.data.ExampleFilteringBeanStatically;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
