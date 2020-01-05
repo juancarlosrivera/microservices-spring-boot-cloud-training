@@ -3,13 +3,17 @@ package com.jc.rest.webservices.restfulwebservices.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @ApiModel(description = "This is my user model")
+@Entity
 public class User {
 
+    @Id
     private int id;
     @Size(min = 2,
           message = "Name should have at least 2 characters")
