@@ -2,14 +2,14 @@ package com.jc.rest.webservices.restfulwebservices.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class ExampleFilteringBean {
+public class ExampleFilteringBeanStatically {
 
     @JsonIgnore
     private String field1;
     private String field2;
     private String field3;
 
-    public ExampleFilteringBean(String field1, String field2, String field3) {
+    public ExampleFilteringBeanStatically(String field1, String field2, String field3) {
 
         this.field1 = field1;
         this.field2 = field2;
