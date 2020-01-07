@@ -1,6 +1,7 @@
 package com.jc.rest.webservices.restfulwebservices.controller;
 
 import com.jc.rest.webservices.restfulwebservices.exceptions.UserNotFoundException;
+import com.jc.rest.webservices.restfulwebservices.model.Post;
 import com.jc.rest.webservices.restfulwebservices.model.User;
 import com.jc.rest.webservices.restfulwebservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,16 @@ public class UserJPAResource {
     public List<User> retrieveAllUsers() {
 
         return userRepository.findAll();
+    }
+
+    @GetMapping("/jpa/users/{userId}/posts")
+    public List<Post> retrieveAllUserPosts(@PathVariable int userId) {
+
+        Optional<User> user = userRepository.findById(userId);
+        if (!user.isPresent()) {
+            throw new UserNotFoundException("Id: " + userId);
+        }
+        return user.get().getPosts();
     }
 
     //Response with 201 Created and location header reponse with the URI to get the new user created
