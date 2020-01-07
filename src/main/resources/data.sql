@@ -1,3 +1,3 @@
-insert into user values (1, sysdate(), 'JC');
-insert into user values (2, sysdate(), 'Mary');
-insert into user values (3, sysdate(), 'Sofia');
+insert into user values (10001, sysdate(), 'JC');
+insert into user values (10002, sysdate(), 'Mary');
+insert into user values (10003, sysdate(), 'Sofia');

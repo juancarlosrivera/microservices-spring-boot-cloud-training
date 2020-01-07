@@ -1,6 +1,5 @@
 package com.jc.rest.webservices.restfulwebservices.controller;
 
-import com.jc.rest.webservices.restfulwebservices.dao.UserDaoService;
 import com.jc.rest.webservices.restfulwebservices.exceptions.UserNotFoundException;
 import com.jc.rest.webservices.restfulwebservices.model.User;
 import com.jc.rest.webservices.restfulwebservices.repository.UserRepository;
@@ -23,9 +22,6 @@ import java.util.Optional;
 
 @RestController
 public class UserJPAResource {
-
-    @Autowired
-    private UserDaoService userDaoService;
 
     @Autowired
     private UserRepository userRepository;
