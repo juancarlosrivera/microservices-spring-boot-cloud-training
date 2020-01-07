@@ -3,6 +3,7 @@ package com.jc.rest.webservices.restfulwebservices.controller;
 import com.jc.rest.webservices.restfulwebservices.exceptions.UserNotFoundException;
 import com.jc.rest.webservices.restfulwebservices.model.Post;
 import com.jc.rest.webservices.restfulwebservices.model.User;
+import com.jc.rest.webservices.restfulwebservices.repository.PostRepository;
 import com.jc.rest.webservices.restfulwebservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -26,6 +27,9 @@ public class UserJPAResource {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     //get detail a specific user
     @GetMapping("/jpa/users/{userId}")
@@ -66,6 +70,22 @@ public class UserJPAResource {
 
         User savedUser = userRepository.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
+        return ResponseEntity.created(location);
+    }
+
+    //Response with 201 Created and location header reponse with the URI to get the new user created
+    @PostMapping("/jpa/users/{userId}/posts")
+    public ResponseEntity.BodyBuilder createPost(@PathVariable int userId, @RequestBody Post post) {
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            throw new UserNotFoundException("Id:" + userId);
+        }
+
+        User user = userOptional.get();
+        post.setUser(user);
+        postRepository.save(post);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
         return ResponseEntity.created(location);
     }
 
